@@ -10,6 +10,7 @@ namespace Torneo.App.Consola
         private static IRepositorioEquipo _repoEquipo = new RepositorioEquipo();
         private static IRepositorioPosicion _repoPosicion = new RepositorioPosicion();
         private static IRepositorioJugador _repoJugador = new RepositorioJugador();
+        private static IRepositorioPartido _repoPartido = new RepositorioPartido();
         
         static void Main(string[] args)
         {
@@ -21,13 +22,13 @@ namespace Torneo.App.Consola
                 Console.WriteLine("3. Insertar Equipo");
                 Console.WriteLine("4. Insertar Posicion");
                 Console.WriteLine("5. Insertar Jugador");
-                //Console.WriteLine("6. Insertar Equipo");
+                Console.WriteLine("6. Insertar Partido");
                 Console.WriteLine("7. Mostrar municipios");
                 Console.WriteLine("8. Mostrar DTs");
                 Console.WriteLine("9. Mostrar Equipos");
                 Console.WriteLine("10. Mostrar Posiciones");
                 Console.WriteLine("11. Mostrar Jugadores");
-                //Console.WriteLine("12. Mostrar Equipos");
+                Console.WriteLine("12. Mostrar Partidos");
                 Console.WriteLine("0. Salir");
                 opcion = Int32.Parse(Console.ReadLine());
                 switch (opcion)
@@ -51,9 +52,9 @@ namespace Torneo.App.Consola
                         AddJugador();
                         break;
 
-                    //case 6 :
-                        //AddEquipo();
-                        //break;
+                    case 6 :
+                        AddPartido();
+                        break;
 
                     case 7 :
                         GetAllMunicipios();
@@ -73,6 +74,10 @@ namespace Torneo.App.Consola
 
                     case 11 :
                         GetAllJugadores();
+                        break;
+
+                    case 12 :
+                        GetAllPartidos();
                         break;
                 }
             } while (opcion != 0);
@@ -153,6 +158,27 @@ namespace Torneo.App.Consola
             _repoJugador.AddJugador(jugador, idEquipo, idPosicion);
         }
 
+        private static void AddPartido()
+        {
+            Console.WriteLine("Escriba la fecha del partido");
+            string fechaHora = Console.ReadLine();
+            Console.WriteLine("Escriba el marcador local");
+            int marcadorLocal = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Escriba el marcador visitante");
+            int marcadorVisitante = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Escriba el id del equipo local");
+            int idEquipoLocal = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Escriba el id del equipo visitante");
+            int idEquipoVisitante = Int32.Parse(Console.ReadLine());
+            var partido = new Partido
+            {
+                FechaHora = DateTime.Parse(fechaHora),
+                MarcadorLocal = marcadorLocal,
+                MarcadorVisitante = marcadorVisitante
+            };
+            _repoPartido.AddPartido(partido, idEquipoLocal, idEquipoVisitante);
+        }
+
         private static void GetAllMunicipios()
         {
             foreach (var municipio in _repoMunicipio.GetAllMunicipios())
@@ -191,6 +217,14 @@ namespace Torneo.App.Consola
             foreach (var jugador in _repoJugador.GetAllJugadores())
             {
                 Console.WriteLine(jugador.Id + " " + jugador.Nombre + " " + jugador.Numero + " " + jugador.Equipo.Nombre + " " + jugador.Posicion.Nombre);
+            }
+        }
+
+        private static void GetAllPartidos()
+        {
+            foreach (var partido in _repoPartido.GetAllPartidos())
+            {
+                Console.WriteLine(partido.Id + " "  + partido.MarcadorLocal + " "  + partido.MarcadorVisitante + " "  + partido.Local.Nombre + " " + partido.Visitante.Nombre);
             }
         }
 
