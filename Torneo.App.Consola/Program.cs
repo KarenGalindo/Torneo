@@ -122,7 +122,7 @@ namespace Torneo.App.Consola
             int idDT = Int32.Parse(Console.ReadLine());
             var equipo = new Equipo
             {
-                Nombre = "Once Caldas",
+                Nombre = nombre,
             };
             _repoEquipo.AddEquipo(equipo, idMunicipio, idDT);
         }
