@@ -21,8 +21,20 @@ namespace Torneo.App.Persistencia
 
         public DirectorTecnico GetDT(int idDirectorTecnico)
         {
-            var dtEncontrado = _dataContext.DirectoresTecnicos.Find(idDirectorTecnico);
-            return dtEncontrado;
+            return _dataContext.DirectoresTecnicos.Find(idDirectorTecnico);
+        }
+
+        public DirectorTecnico UpdateDT(DirectorTecnico directorTecnico)
+        {
+            var directorTecnicoEncontrado = _dataContext.DirectoresTecnicos.Find(directorTecnico.Id);
+            if (directorTecnicoEncontrado != null)
+            {
+                directorTecnicoEncontrado.Nombre = directorTecnico.Nombre;
+                directorTecnicoEncontrado.Documento = directorTecnico.Documento;
+                directorTecnicoEncontrado.Telefono = directorTecnico.Telefono;
+                _dataContext.SaveChanges();
+            }
+            return directorTecnicoEncontrado;
         }
     }
 }
