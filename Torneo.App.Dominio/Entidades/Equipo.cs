@@ -5,7 +5,7 @@ namespace Torneo.App.Dominio
     {
         public int Id { get; set; }
         [Display(Name = "Nombre del equipo")]
-        [Required(ErrorMessage = "El nombre es obligatorio")]
+        [Required(ErrorMessage = "El nombre del equipo es obligatorio")]
         public string Nombre { get; set; }
         public Municipio Municipio { get; set; }
         public DirectorTecnico DirectorTecnico { get; set; }
