@@ -22,5 +22,11 @@ namespace Torneo.App.Persistencia
         {
             return _dataContext.Partidos;
         }
+
+        public Partido GetPartido(int idPartido)
+        {
+            var partidoEncontrado = _dataContext.Partidos.Find(idPartido);
+            return partidoEncontrado;
+        }
     }
 }
