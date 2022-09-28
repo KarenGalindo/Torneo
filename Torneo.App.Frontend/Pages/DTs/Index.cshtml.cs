@@ -9,6 +9,8 @@ namespace Torneo.App.Frontend.Pages.DTs
     {
         private readonly IRepositorioDT _repoDT;
         public IEnumerable<DirectorTecnico> dts { get; set; }
+        //public bool ErrorEliminar { get; set; }
+
         public IndexModel(IRepositorioDT repoDT)
         {
             _repoDT = repoDT;
@@ -16,6 +18,7 @@ namespace Torneo.App.Frontend.Pages.DTs
         public void OnGet()
         {
             dts = _repoDT.GetAllDTs();
+            //ErrorEliminar = false;
         }
     }
 }

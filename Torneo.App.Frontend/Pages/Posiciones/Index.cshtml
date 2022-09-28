@@ -2,6 +2,12 @@
 @model Torneo.App.Frontend.Pages.Posiciones.IndexModel
 @{
 }
+@if (Model.ErrorEliminar)
+{
+    <div class="alert alert-danger" role="alert">
+        No se pudo eliminar la posicion
+    </div>
+}
 <a class="btn btn-primary" asp-page="./Create">Crear posicion</a>
 
 <h1>Listado de posiciones</h1>
@@ -26,6 +32,12 @@
                     <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@posicion.Id">
                     Editar
                     </a>
+                    <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@posicion.Id"
+                        onclick="return confirm('Esta Seguro de eliminar la posicion?')"class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
                 </td>
             </tr>
         }

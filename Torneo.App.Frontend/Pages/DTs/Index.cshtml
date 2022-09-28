@@ -26,6 +26,12 @@
                     <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@dt.Id">
                     Editar
                     </a>
+                    <form method="post" class="d-inline">
+                        <button asp-page-handler="Delete" asp-route-id="@dt.Id"
+                        onclick="return confirm('Esta Seguro de eliminar el D.T.?')"class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
                 </td>
             </tr>
         }

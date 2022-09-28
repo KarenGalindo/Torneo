@@ -34,5 +34,16 @@ namespace Torneo.App.Persistencia
             }
             return posicionEncontrada;
         }
+
+        public Posicion DeletePosicion(int idPosicion)
+        {
+            var posicionEncontrada = _dataContext.Posiciones.Find(idPosicion);
+            if (posicionEncontrada != null)
+            {
+                _dataContext.Posiciones.Remove(posicionEncontrada);
+                _dataContext.SaveChanges();
+            }
+            return posicionEncontrada;
+        }
     }
 }

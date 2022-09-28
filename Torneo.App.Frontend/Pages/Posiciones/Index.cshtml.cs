@@ -9,6 +9,8 @@ namespace Torneo.App.Frontend.Pages.Posiciones
     {
         private readonly IRepositorioPosicion _repoPosicion;
         public IEnumerable<Posicion> posiciones { get; set; }
+        public bool ErrorEliminar { get; set; }
+
         public IndexModel(IRepositorioPosicion repoPosicion)
         {
             _repoPosicion = repoPosicion;
@@ -16,6 +18,23 @@ namespace Torneo.App.Frontend.Pages.Posiciones
         public void OnGet()
         {
             posiciones = _repoPosicion.GetAllPosiciones();
+            ErrorEliminar = false;
+        }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            try
+            {
+                posiciones = _repoPosicion.GetAllPosiciones();
+                _repoPosicion.DeletePosicion(id);
+                return Page();
+            }
+            catch (Exception ex)
+            {
+                posiciones = _repoPosicion.GetAllPosiciones();
+                ErrorEliminar = true;
+                return Page();
+            }
         }
     }
 }
