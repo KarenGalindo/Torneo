@@ -9,9 +9,9 @@ namespace Torneo.App.Persistencia
         
         public DirectorTecnico AddDT(DirectorTecnico directorTecnico)
         {
-        var dtInsertado = _dataContext.DirectoresTecnicos.Add(directorTecnico);
-        _dataContext.SaveChanges();
-        return dtInsertado.Entity;
+            var dtInsertado = _dataContext.DirectoresTecnicos.Add(directorTecnico);
+            _dataContext.SaveChanges();
+            return dtInsertado.Entity;
         }
 
         public IEnumerable<DirectorTecnico> GetAllDTs()

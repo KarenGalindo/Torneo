@@ -224,7 +224,7 @@ namespace Torneo.App.Consola
         {
             foreach (var partido in _repoPartido.GetAllPartidos())
             {
-                Console.WriteLine(partido.Id + " "  + partido.MarcadorLocal + " "  + partido.MarcadorVisitante + " "  + partido.Local.Nombre + " " + partido.Visitante.Nombre);
+                Console.WriteLine(partido.Id + " "  + partido.Local + " "  + partido.MarcadorLocal + " "  + partido.Visitante + " " + partido.MarcadorVisitante);
             }
         }
 
